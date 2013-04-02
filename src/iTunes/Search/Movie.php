@@ -13,7 +13,7 @@ class Movie extends SearchBase implements SearchInterface
 
 	public function __invoke($wf, $query)
 	{
-		$responses = $this->request(array(
+		$responses = $this->search(array(
 			'media' => 'movie',
 			'term' => $query,
 		));
@@ -22,6 +22,11 @@ class Movie extends SearchBase implements SearchInterface
 		{
 			foreach ($responses as $response)
 			{
+				$artwork = $this->artwork(
+					$this->filter($response, 'artworkUrl100'),
+					$this->filter($response, 'trackId')
+				);
+
 				$wf->result(array(
 					'uid' => sha1($this->filter($response, 'trackName')),
 					'arg' => $this->filter($response, 'trackId'),
@@ -29,11 +34,13 @@ class Movie extends SearchBase implements SearchInterface
 					'subtitle' => ('[' . $this->filter($response, 'primaryGenreName') . ', ' .
 						$this->filter($response, 'contentAdvisoryRating') . '] ' .
 						$this->filter($response, 'longDescription')),
-					'icon' => $response['artworkUrl100'],
+					'icon' => $artwork,
 					'valid' => 'no',
-					'autocomplete' => $this->filter($response, 'trackId'),
+					'autocomplete' => 'id ' . $this->filter($response, 'trackId'),
 				));
 			}
+
+			$responses = $this->flush();
 		}
 	}
 }
