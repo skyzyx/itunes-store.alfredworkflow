@@ -3,6 +3,7 @@ namespace iTunes\Filter;
 
 use iTunes\Filter\FilterInterface;
 use iTunes\Logger;
+use iTunes\Search\Id;
 use iTunes\Search\Movie;
 
 class Sort implements FilterInterface
@@ -13,6 +14,11 @@ class Sort implements FilterInterface
 
 		switch ($kind)
 		{
+			case 'id':
+				$id = new Id();
+				$id($wf, $query);
+				break;
+
 			case 'music':
 				break;
 

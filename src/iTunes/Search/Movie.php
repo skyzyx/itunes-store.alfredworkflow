@@ -22,25 +22,31 @@ class Movie extends SearchBase implements SearchInterface
 		{
 			foreach ($responses as $response)
 			{
-				$artwork = $this->artwork(
-					$this->filter($response, 'artworkUrl100'),
-					$this->filter($response, 'trackId')
-				);
-
-				$wf->result(array(
-					'uid' => sha1($this->filter($response, 'trackName')),
-					'arg' => $this->filter($response, 'trackId'),
-					'title' => $this->filter($response, 'trackName'),
-					'subtitle' => ('[' . $this->filter($response, 'primaryGenreName') . ', ' .
-						$this->filter($response, 'contentAdvisoryRating') . '] ' .
-						$this->filter($response, 'longDescription')),
-					'icon' => $artwork,
-					'valid' => 'no',
-					'autocomplete' => 'id ' . $this->filter($response, 'trackId'),
-				));
+				$this->parse($wf, $response);
 			}
 
 			$responses = $this->flush();
 		}
+	}
+
+	public function parse($wf, $response)
+	{
+		$artwork = $this->artwork(
+			$this->filter($response, 'artworkUrl100'),
+			$this->filter($response, 'trackId')
+		);
+
+		$wf->result(array(
+			'uid' => sha1($this->filter($response, 'trackName')),
+			'arg' => $this->filter($response, 'trackId'),
+			'title' => $this->filter($response, 'trackName'),
+			'subtitle' => ('[' . date('Y', strtotime($this->filter($response, 'releaseDate'))) . ', ' .
+				$this->filter($response, 'primaryGenreName') . ', ' .
+				$this->filter($response, 'contentAdvisoryRating') . '] ' .
+				$this->filter($response, 'longDescription')),
+			'icon' => $artwork,
+			'valid' => 'no',
+			'autocomplete' => 'id ' . $this->filter($response, 'trackId'),
+		));
 	}
 }

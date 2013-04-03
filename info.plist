@@ -7,7 +7,32 @@
 	<key>connections</key>
 	<dict>
 		<key>86F16A5E-0701-4D5E-B595-5F686CA3EE9B</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F9D1E3BF-C781-4B81-8BD7-E01D59373BD2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>1CBA9AB0-18CD-446F-8240-0F10B2A5274F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>E144EB97-4A2A-41A6-B2DA-E3423FC42CA3</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Ryan Parman</string>
@@ -19,6 +44,57 @@
 	<string>iTunes Store</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>plusspaces</key>
+				<false/>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>1CBA9AB0-18CD-446F-8240-0F10B2A5274F</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query} was saved to your clipboard.</string>
+				<key>title</key>
+				<string>iTunes Store</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>E144EB97-4A2A-41A6-B2DA-E3423FC42CA3</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>F9D1E3BF-C781-4B81-8BD7-E01D59373BD2</string>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -51,7 +127,22 @@
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>1CBA9AB0-18CD-446F-8240-0F10B2A5274F</key>
+		<dict>
+			<key>ypos</key>
+			<real>120</real>
+		</dict>
 		<key>86F16A5E-0701-4D5E-B595-5F686CA3EE9B</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>E144EB97-4A2A-41A6-B2DA-E3423FC42CA3</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>F9D1E3BF-C781-4B81-8BD7-E01D59373BD2</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
