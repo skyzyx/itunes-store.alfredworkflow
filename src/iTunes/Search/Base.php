@@ -20,10 +20,7 @@ class Base
 
 	public function __construct()
 	{
-		$fs = new Filesystem();
-
-		$this->tmp = sys_get_temp_dir() . "/alfred-itunes-workflow";
-		$fs->mkdir($this->tmp);
+		$this->tmp = Cacher::cachePath();
 
 		$this->http = new Client();
 		$this->http->addSubscriber(new CachePlugin(new DoctrineCacheAdapter(Cacher::get())));
@@ -54,8 +51,7 @@ class Base
 	public function artwork($url, $id)
 	{
 		$path = $this->tmp . "/${id}.jpg";
-		$fh = fopen($path, 'w+');
-		$this->queue[] = $this->http->get($url, null, $fh);
+		$this->queue[] = $this->http->get($url, null, fopen($path, 'w'));
 
 		Logger::get()->info('Added artwork to the queue.', array(
 			'url' => $url,

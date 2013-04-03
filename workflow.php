@@ -9,8 +9,8 @@ use Guzzle\Http\Client;
 use iTunes\Cacher;
 use iTunes\Logger;
 
-Cacher::set();
 Logger::set();
+Cacher::set();
 
 $bundle_id = 'com.ryanparman.workflow.itunes';
 $query = isset($argv[1]) ? $argv[1] : null;

@@ -22,10 +22,10 @@ class Id extends SearchBase implements SearchInterface
 		{
 			foreach ($responses as $response)
 			{
-				// $artwork = $this->artwork(
-				// 	$this->filter($response, 'artworkUrl100'),
-				// 	$this->filter($response, 'trackId')
-				// );
+				$artwork = $this->artwork(
+					$this->filter($response, 'artworkUrl100'),
+					$this->filter($response, 'trackId')
+				);
 
 				switch ($this->filter($response, 'kind'))
 				{
@@ -35,7 +35,7 @@ class Id extends SearchBase implements SearchInterface
 							'arg' => $this->filter($response, 'trackViewUrl'),
 							'title' => $this->filter($response, 'trackName') . ' (' . date('Y', strtotime($this->filter($response, 'releaseDate'))) . ')',
 							'subtitle' => 'View description, ratings and other details.',
-							'icon' => ITMS_ROOT . '/icon.png',
+							'icon' => $artwork,
 						));
 						$wf->result(array(
 							'uid' => sha1($this->filter($response, 'trackName')) . 'runtime',
